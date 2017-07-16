@@ -8,6 +8,7 @@ module.exports = {
         publicPath: '/assets/',
         filename: 'bundle.js',
     },
+    devtool: 'source-map',
     plugins: [
         new CopyWebpackPlugin([
             { from: 'assets/usa-map.svg' },
