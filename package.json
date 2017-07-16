@@ -4,12 +4,20 @@
   "description": "An interactive SVG map of the United States of America",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server:dev": "./node_modules/.bin/webpack-dev-server --content-base server/",
+    "test": "./node_modules/.bin/mocha"
   },
   "keywords": [
     "map",
     "USA"
   ],
   "author": "Taylor Griffin",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.0.1",
+    "mocha": "^3.4.2",
+    "nightmare": "^2.10.0",
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.5.1"
+  }
 }
