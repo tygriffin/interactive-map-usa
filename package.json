@@ -1,0 +1,15 @@
+{
+  "name": "usa-map",
+  "version": "0.1.0",
+  "description": "An interactive SVG map of the United States of America",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "map",
+    "USA"
+  ],
+  "author": "Taylor Griffin",
+  "license": "ISC"
+}
