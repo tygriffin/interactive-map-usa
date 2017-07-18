@@ -8,22 +8,20 @@
     <link rel="stylesheet" type="text/css" href="/assets/main.bundle.css" />
 </head>
 
-<body>
+<body style="background: white">
+
+    <h1>Interactive Map Test</h1>
 
     <svg id="usa-map" />
-    <svg id="other-map" />
 
     <script>
         InteractiveMapUSA.init(
             {
                 id: "usa-map",
-                linkWith: "/states/info/{{state}}",
+                linkTo: "https://en.wikipedia.org/wiki/{{state}}",
                 onClick: function() {},
                 onHover: function() {},
-            },
-            { 
-                id: "other-map"
-            },
+            }
         )
     </script>
 

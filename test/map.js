@@ -14,25 +14,19 @@ describe("Map", function() {
         nightmare = new Nightmare()
     })
 
-    describe("Testing", () => {
-        it("should work", done => {
+    describe("Interactive Map", () => {
+
+        it("should navigate to specific page when a state is clicked", done => {
+
             nightmare
                 .goto(URL)
-                // .evaluate(function() {
-                //     var svgObj = document.querySelector("#map-svg")
-                //     if (svgObj == null) throw "No svg object"
-
-                //     var svgDoc = svgObj.contentDocument
-                //     if (svgDoc == null) throw "No svg document"     
-                        
-                //     return document.replaceChild(svgDoc.documentElement, document.documentElement)
-                // })
+                .wait("#NC")
                 .click("#NC")
                 .wait(3000)
-                .path()
+                .url()
                 .end()
-                .then(path => {
-                    assert.equal(path, "/north_carolina")
+                .then(url => {
+                    assert.equal(url.toLowerCase(), "https://en.wikipedia.org/wiki/north_carolina")
                     done()
                 })
                 .catch(done)
