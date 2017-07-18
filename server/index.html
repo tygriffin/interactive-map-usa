@@ -9,15 +9,21 @@
 
 <body>
 
-    <svg data-src="assets/usa-map.svg" />
+    <svg id="usa-map" />
+    <svg id="other-map" />
 
     <script>
-        InteractiveMapUSA.init({
-            id: "usa-map",
-            linkWith: "/states/info/{{state}}",
-            onClick: function() {},
-            onHover: function() {},
-        })
+        InteractiveMapUSA.init(
+            {
+                id: "usa-map",
+                linkWith: "/states/info/{{state}}",
+                onClick: function() {},
+                onHover: function() {},
+            },
+            { 
+                id: "other-map"
+            },
+        )
     </script>
 
 </body>
