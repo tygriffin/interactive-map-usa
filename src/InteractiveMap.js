@@ -33,7 +33,9 @@ export default class InteractiveMap {
 
         hotspots.forEach(spot => {
             forOwn(callbackLookup, (handler, onevent) => {
-                spot[onevent] = handler
+                if (this.options.disableStates.indexOf(spot.id) === -1) {
+                    spot[onevent] = handler
+                }
             })
         })
     }
@@ -58,9 +60,6 @@ export default class InteractiveMap {
         
         stateName = stateName.replace(/ /g, "_").toLowerCase()
         tmpl = tmpl.replace(/{{state}}/g, stateName)
-
-        console.log(stateName)
-        console.log(tmpl)
 
         return tmpl
     }
