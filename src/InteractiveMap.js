@@ -83,8 +83,6 @@ export default class InteractiveMap {
     }
 
     bindHoverStyles(state) {
-        window.thing = state
-        
         state.addEventListener("mouseenter", () => {
             state.style.fill = this.styles.stateHoverFill
         })
