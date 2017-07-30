@@ -16,33 +16,45 @@ describe("Map", function() {
 
     describe("Interactive Map", () => {
 
-        it("should navigate to specific page when a state is clicked", done => {
+        // it("should navigate to specific page when a state is clicked", done => {
 
+        //     nightmare
+        //         .goto(URL)
+        //         .wait("#NC")
+        //         .click("#NC")
+        //         .wait(3000)
+        //         .url()
+        //         .end()
+        //         .then(url => {
+        //             assert.equal(url.toLowerCase(), "https://en.wikipedia.org/wiki/north_carolina")
+        //             done()
+        //         })
+        //         .catch(done)
+        // })
+
+        // it("should disable states based on configuration", done => {
+
+        //     nightmare
+        //         .goto(URL)
+        //         .wait("#HI")
+        //         .click("#HI")
+        //         .wait(3000)
+        //         .url()
+        //         .end()
+        //         .then(url => {
+        //             assert.equal(url.toLowerCase(), URL)
+        //             done()
+        //         })
+        //         .catch(done)
+        // })
+
+        it("should add class 'disabled' to disabled states", done => {
             nightmare
                 .goto(URL)
-                .wait("#NC")
-                .click("#NC")
-                .wait(3000)
-                .url()
+                .exists("#HI.disabled")
                 .end()
-                .then(url => {
-                    assert.equal(url.toLowerCase(), "https://en.wikipedia.org/wiki/north_carolina")
-                    done()
-                })
-                .catch(done)
-        })
-
-        it("should disable states based on configuration", done => {
-
-            nightmare
-                .goto(URL)
-                .wait("#HI")
-                .click("#HI")
-                .wait(3000)
-                .url()
-                .end()
-                .then(url => {
-                    assert.equal(url.toLowerCase(), URL)
+                .then(exists => {
+                    assert.equal(exists, true)
                     done()
                 })
                 .catch(done)

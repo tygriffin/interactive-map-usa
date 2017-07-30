@@ -25,6 +25,7 @@ export default class App {
     static afterInject() {
         App.maps.forEach(function(map) {
             map.bindCallbacks()
+            map.setupStyles()
         })
     }
 }
