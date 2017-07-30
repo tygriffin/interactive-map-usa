@@ -8,17 +8,13 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, process.env.NODE_ENV === "production" ? "dist" : "build"),
         publicPath: "/assets/",
-        filename: "bundle.js",
+        filename: process.env.NODE_ENV === "production" ? "usa-map.js" : "bundle.js",
     },
     devtool: "source-map",
     plugins: [
         new CopyWebpackPlugin([
             { from: "assets/usa-map.svg" },
         ]),
-        new ExtractTextPlugin({
-            filename: "[name].bundle.css",
-            allChunks: true,
-        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: process.env.NODE_ENV === "production"
         })

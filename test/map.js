@@ -47,17 +47,5 @@ describe("Map", function() {
                 })
                 .catch(done)
         })
-
-        it("should add class 'disabled' to disabled states", done => {
-            nightmare
-                .goto(URL)
-                .exists("#HI.disabled")
-                .end()
-                .then(exists => {
-                    assert.equal(exists, true)
-                    done()
-                })
-                .catch(done)
-        })
     })
 })

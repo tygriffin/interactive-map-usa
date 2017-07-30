@@ -9,7 +9,7 @@ const DEFAULT_OPTIONS = {
     // onClick: null, // TODO
     // onHover: () => {}, // TODO
     styles: {},
-    disableStates: [],
+    disabledStates: [],
     mapSVGPath: "/usa-map.svg",
 }
 
@@ -61,7 +61,7 @@ export default class InteractiveMap {
 
     mount() {
         this.dom.states.forEach(state => {
-            let disabled = this.options.disableStates.indexOf(state.id) !== -1
+            let disabled = this.options.disabledStates.indexOf(state.id) !== -1
             
             if (disabled) {
                 this.setupDisabledStyles(state)

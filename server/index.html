@@ -20,7 +20,12 @@
                 {
                     id: "usa-map",
                     linkTo: "https://en.wikipedia.org/wiki/{{state}}",
-                    disableStates: ["HI", "NY"],
+                    disabledStates: ["HI", "NY"],
+                    styles: {
+                        stateFill: "red",
+                        disabledStateFill: "#782abb",
+                        stateHoverFill: "#888fff"
+                    }
                 }
             ]
         })

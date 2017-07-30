@@ -4,7 +4,7 @@
   "description": "An interactive SVG map of the United States of America",
   "main": "index.js",
   "scripts": {
-    "build:dist": "NODE_ENV=production ./node_modules/.bin/webpack",
+    "build:dist": "rm -Rf dist && NODE_ENV=production ./node_modules/.bin/webpack",
     "server:dev": "./node_modules/.bin/webpack-dev-server --content-base server/ --hot",
     "test": "./node_modules/.bin/mocha"
   },
