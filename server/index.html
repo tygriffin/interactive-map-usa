@@ -14,13 +14,16 @@
     <svg id="usa-map" />
 
     <script>
-        InteractiveMapUSA.init(
-            {
-                id: "usa-map",
-                linkTo: "https://en.wikipedia.org/wiki/{{state}}",
-                disableStates: ["HI", "NY"],
-            }
-        )
+        InteractiveMapUSA.init({
+            mapSVGPath: "/assets/usa-map.svg",
+            maps: [
+                {
+                    id: "usa-map",
+                    linkTo: "https://en.wikipedia.org/wiki/{{state}}",
+                    disableStates: ["HI", "NY"],
+                }
+            ]
+        })
     </script>
 
 </body>

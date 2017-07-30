@@ -12,7 +12,7 @@ export default class DOM {
     }
 
     setDataSource(path) {
-        this.map.setAttribute("data-src", "/assets/usa-map.svg")
+        this.map.setAttribute("data-src", path)
     }
 
     get states() {

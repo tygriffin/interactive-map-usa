@@ -5,10 +5,12 @@ export default class App {
     
     static maps = []
 
-    static init() {
-        var args = Array.from(arguments)
+    static init(options) {
+        const { mapSVGPath } = options
+        const mapConfig = options.maps || []
 
-        App.maps = args.map(function(options) {
+        App.maps = mapConfig.map(function(options) {
+            options.mapSVGPath = mapSVGPath
             return new InteractiveMap(options)
         })
 

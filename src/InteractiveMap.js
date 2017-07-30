@@ -10,6 +10,7 @@ const DEFAULT_OPTIONS = {
     // onHover: () => {}, // TODO
     styles: {},
     disableStates: [],
+    mapSVGPath: "/usa-map.svg",
 }
 
 const DEFAULT_STYLES = {
@@ -55,7 +56,7 @@ export default class InteractiveMap {
         this.styles = defaults(this.options.styles, DEFAULT_STYLES)
 
         this.dom = new DOM(this.options.id)
-        this.dom.setDataSource()
+        this.dom.setDataSource(this.options.mapSVGPath)
     }
 
     mount() {
