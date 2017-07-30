@@ -66,7 +66,7 @@ export default class InteractiveMap {
 
     setupStyles() {
         var { disableStates } = this.options
-        console.log(disableStates)
+        
         disableStates.forEach(stateAbbrev => {
             document.querySelector(`#${stateAbbrev}`).classList.add("disabled")
         })
