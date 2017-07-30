@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin")
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
-    entry: ["./src/index.js", "./styles/main.scss"],
+    entry: ["./src/index.js"],
     output: {
         path: path.resolve(__dirname, process.env.NODE_ENV === "production" ? "dist" : "build"),
         publicPath: "/assets/",
@@ -35,13 +35,6 @@ module.exports = {
                         plugins: ["transform-class-properties"]
                     }
                 }
-            },
-            {
-                test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: ["css-loader", "sass-loader"]
-                })
             }
         ]
     }

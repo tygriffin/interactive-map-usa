@@ -50,4 +50,6 @@ export default {
     WV : "West Virginia",
     WY : "Wyoming",
     DC : "District of Columbia",
+    DC1 : "District of Columbia",
+    DC2 : "District of Columbia",
 }
