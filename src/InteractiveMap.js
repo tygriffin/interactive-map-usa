@@ -1,14 +1,15 @@
 import { defaults } from "lodash"
 import DOM from "./DOM"
 import StateLookup from "./StateLookup"
-import { forOwn } from "lodash"
+import { forOwn, isString } from "lodash"
 
 const DEFAULT_OPTIONS = {
     id: "",
     linkTo: "",
-    onClick: null,
-    onHover: () => {},
+    // onClick: null, // TODO
+    // onHover: () => {}, // TODO
     styles: {},
+    disableStates: [],
 }
 
 const DEFAULT_STYLES = {
@@ -17,15 +18,41 @@ const DEFAULT_STYLES = {
     stateHoverFill: "#002868",
 }
 
+function validateOptions(options) {
+    var errors = []
+
+    if (!isString || !options.id.length) {
+        errors.push("Map options require an 'id'")
+    }
+
+    const validateKeys = (opts, valid) => {
+        opts.forEach(key => {
+            if (valid.indexOf(key) === -1) {
+                errors.push(`Found unexpected key '${key}' in options`)
+            }
+        })
+    }
+
+    validateKeys(Object.keys(options), Object.keys(DEFAULT_OPTIONS))
+    validateKeys(Object.keys(options.styles || {}), Object.keys(DEFAULT_STYLES))
+
+    if (errors.length) {
+        throw new Error(errors.join("\n"))
+    }
+}
+
 export default class InteractiveMap {
 
     constructor(options) {
+        try {
+            validateOptions(options)
+        }
+        catch(err) {
+            console.warn(`Error validating options: ${err.message}`)
+        }
+
         this.options = defaults(options, DEFAULT_OPTIONS)
         this.styles = defaults(this.options.styles, DEFAULT_STYLES)
-        
-        if (!this.options.id.length) {
-            throw "Map options require an 'id'"
-        }
 
         this.dom = new DOM(this.options.id)
         this.dom.setDataSource()
@@ -50,7 +77,7 @@ export default class InteractiveMap {
         const callbackLookup = this.getCallbackLookup()
 
         forOwn(callbackLookup, (handler, onevent) => {
-            state[onevent] = handler
+            state.addEventListener(onevent, handler)
         })
     }
 
@@ -70,7 +97,7 @@ export default class InteractiveMap {
         var callbackLookup = {}
 
         if (this.options.linkTo.length) {
-            callbackLookup.onclick = (e) => {
+            callbackLookup.click = (e) => {
                 window.location.href = this.getLink(e.target.id)
             }
         }
