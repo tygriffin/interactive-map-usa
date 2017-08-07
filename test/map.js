@@ -22,7 +22,7 @@ describe("Map", function() {
                 .goto(URL)
                 .wait("#NC")
                 .click("#NC")
-                .wait(3000)
+                .wait(4000)
                 .url()
                 .end()
                 .then(url => {

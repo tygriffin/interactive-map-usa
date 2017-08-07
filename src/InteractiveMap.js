@@ -10,6 +10,7 @@ const DEFAULT_OPTIONS = {
     // onHover: () => {}, // TODO
     styles: {},
     disabledStates: [],
+    enabledStates: [],
     mapSVGPath: "/usa-map.svg",
 }
 
@@ -37,6 +38,10 @@ function validateOptions(options) {
     validateKeys(Object.keys(options), Object.keys(DEFAULT_OPTIONS))
     validateKeys(Object.keys(options.styles || {}), Object.keys(DEFAULT_STYLES))
 
+    if (options.disabledStates.length && options.enabledStates.length) {
+        errors.push("Found configuration for both enabling and disabling states. Only one is allowed at a time. Both will be ignored.")
+    }
+
     if (errors.length) {
         throw new Error(errors.join("\n"))
     }
@@ -63,17 +68,30 @@ export default class InteractiveMap {
         this.setupResponsiveStyles()
 
         this.dom.states.forEach(state => {
-            let disabled = this.options.disabledStates.indexOf(state.id) !== -1
+            let enabled = this.isStateEnabled(state)
 
-            if (disabled) {
-                this.setupDisabledStyles(state)
-            }
-            else {
+            if (enabled) {
                 this.bindHoverStyles(state)
                 this.setupStyles(state)
                 this.bindCallbacks(state)
             }
+            else {
+                this.setupDisabledStyles(state)
+            }
         })
+    }
+
+    isStateEnabled(state) {
+        const { disabledStates, enabledStates } = this.options
+        if (disabledStates.length && enabledStates.length) {
+            return false
+        }
+        if (disabledStates.indexOf(state.id) !== -1) {
+            return false         
+        }
+        if (enabledStates.indexOf(state.id) !== -1) {
+            return true            
+        }
     }
 
     bindCallbacks(state) {
