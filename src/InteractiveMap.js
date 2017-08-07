@@ -6,6 +6,7 @@ import { forOwn, isString } from "lodash"
 const DEFAULT_OPTIONS = {
     id: "",
     linkTo: "",
+    links: {},
     // onClick: null, // TODO
     // onHover: () => {}, // TODO
     styles: {},
@@ -96,6 +97,13 @@ export default class InteractiveMap {
 
     bindCallbacks(state) {
         const callbackLookup = this.getCallbackLookup()
+
+        const stateLink = this.options.links[state.id]
+        if (stateLink) {
+            callbackLookup.click = (e) => {
+                window.location.href = stateLink
+            }
+        }
 
         forOwn(callbackLookup, (handler, onevent) => {
             state.addEventListener(onevent, handler)
