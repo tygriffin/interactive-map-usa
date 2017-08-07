@@ -60,9 +60,11 @@ export default class InteractiveMap {
     }
 
     mount() {
+        this.setupResponsiveStyles()
+
         this.dom.states.forEach(state => {
             let disabled = this.options.disabledStates.indexOf(state.id) !== -1
-            
+
             if (disabled) {
                 this.setupDisabledStyles(state)
             }
@@ -114,6 +116,15 @@ export default class InteractiveMap {
         tmpl = tmpl.replace(/{{state}}/g, stateName)
 
         return tmpl
+    }
+
+    setupResponsiveStyles() {
+        this.dom.map.style.display = "block"
+        this.dom.map.style.position = "absolute"
+        this.dom.map.style.top = 0
+        this.dom.map.style.left = 0
+        this.dom.map.style.width = "100%"
+        this.dom.map.style.height = "100%"
     }
 
     setupStyles(state) {        
