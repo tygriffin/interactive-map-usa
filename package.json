@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build:dist": "rm -Rf dist && NODE_ENV=production ./node_modules/.bin/webpack",
-    "server:dev": "./node_modules/.bin/webpack-dev-server --content-base server/ --hot",
+    "server:dev": "./node_modules/.bin/webpack-dev-server --hot",
     "test": "./node_modules/.bin/mocha"
   },
   "keywords": [

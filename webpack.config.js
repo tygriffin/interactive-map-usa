@@ -10,6 +10,9 @@ module.exports = {
         publicPath: "/assets/",
         filename: process.env.NODE_ENV === "production" ? "usa-map.js" : "bundle.js",
     },
+    devServer: {
+        contentBase: path.join(__dirname, "server")
+    },
     devtool: "source-map",
     plugins: [
         new CopyWebpackPlugin([

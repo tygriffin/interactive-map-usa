@@ -7,6 +7,7 @@ const DEFAULT_OPTIONS = {
     id: "",
     linkTo: "",
     links: {},
+    openLinkInNewWindow: false,
     // onClick: null, // TODO
     // onHover: () => {}, // TODO
     styles: {},
@@ -19,6 +20,10 @@ const DEFAULT_STYLES = {
     stateFill: "#d3d3d3",
     disabledStateFill: "#444444",
     stateHoverFill: "#002868",
+}
+
+const nonEmptyArray = (arr) => {
+    return Array.isArray(arr) && arr.length > 0
 }
 
 function validateOptions(options) {
@@ -39,7 +44,8 @@ function validateOptions(options) {
     validateKeys(Object.keys(options), Object.keys(DEFAULT_OPTIONS))
     validateKeys(Object.keys(options.styles || {}), Object.keys(DEFAULT_STYLES))
 
-    if (options.disabledStates.length && options.enabledStates.length) {
+    const { disabledStates, enabledStates } = options
+    if (nonEmptyArray(disabledStates) && nonEmptyArray(enabledStates)) {
         errors.push("Found configuration for both enabling and disabling states. Only one is allowed at a time. Both will be ignored.")
     }
 
@@ -101,7 +107,12 @@ export default class InteractiveMap {
         const stateLink = this.options.links[state.id]
         if (stateLink) {
             callbackLookup.click = (e) => {
-                window.location.href = stateLink
+                if (this.options.openLinkInNewWindow) {
+                    window.open(stateLink, "_blank")
+                }
+                else {
+                    window.location.href = stateLink
+                }
             }
         }
 
